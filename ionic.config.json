@@ -1,0 +1,7 @@
+{
+  "name": "TbtIonic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
