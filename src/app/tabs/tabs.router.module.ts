@@ -17,6 +17,24 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'login',
+        children: [
+          {
+            path: '',
+            loadChildren: '../login/login.module#LoginPageModule'
+          }
+        ]
+      },
+      {
+        path: 'logout',
+        children: [
+          {
+            path: '',
+            loadChildren: '../logout/logout.module#LogoutPageModule'
+          }
+        ]
+      },
+      {
         path: 'play',
         children: [
           {
