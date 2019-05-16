@@ -1,9 +1,45 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Friends
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Friends
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-list>
+        <ion-list-header>
+            YOUR FRIENDS
+        </ion-list-header>
+        <ion-item>
+            <ion-avatar slot="start">
+                <img src="./assets/user-profile.gif"/>
+            </ion-avatar>
+            <ion-label>
+                <h2>Jimmy Bobberson</h2>
+                <p>jbobberson69</p>
+            </ion-label>
+            <ion-button shape="round">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-item>
+        <ion-item>
+            <ion-avatar slot="start">
+                <img src="./assets/user-profile.gif"/>
+            </ion-avatar>
+            <ion-label>
+                <h2>Samual Sewall</h2>
+                <p>samyboyo21</p>
+            </ion-label>
+            <ion-button shape="round">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
