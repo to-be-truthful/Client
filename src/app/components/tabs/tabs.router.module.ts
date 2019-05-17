@@ -4,7 +4,7 @@ import {TabsPage} from './tabs.page';
 
 const routes: Routes = [
     {
-        path: 'tabs',
+        path: 'app',
         component: TabsPage,
         children: [
             {
@@ -44,15 +44,42 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'login',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../login/login.module#LoginPageModule'
+                    }
+                ]
+            },
+            {
+                path: 'logout',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../logout/logout.module#LogoutPageModule'
+                    }
+                ]
+            },
+            {
+                path: 'register',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../register/register.module#RegisterPageModule'
+                    }
+                ]
+            },
+            {
                 path: '',
-                redirectTo: '/tabs/home',
+                redirectTo: '/app/home',
                 pathMatch: 'full'
             }
         ]
     },
     {
         path: '',
-        redirectTo: '/tabs/home',
+        redirectTo: '/app/home',
         pathMatch: 'full'
     }
 ];

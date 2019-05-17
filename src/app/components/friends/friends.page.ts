@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {APIService, IPerson} from "../../providers/api.service";
 
 @Component({
-  selector: 'app-friends',
-  templateUrl: './friends.page.html',
-  styleUrls: ['./friends.page.scss'],
+    selector: 'app-friends',
+    templateUrl: './friends.page.html',
+    styleUrls: ['./friends.page.scss'],
 })
 export class FriendsPage implements OnInit {
 
-  constructor() { }
+    public friends: Array<IPerson>;
 
-  ngOnInit() {
-  }
+    constructor(
+        private apiService: APIService
+    ) {
+    }
+
+    ngOnInit() {
+        this.apiService.getFriends().then(friends => {
+            this.friends = friends;
+            console.log(friends);
+        })
+    }
 
 }

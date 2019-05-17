@@ -1,25 +1,33 @@
-<ion-tabs>
+<ion-tabs #tabBar (ionTabsDidChange)="onUpdate()">
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button *ngIf="loggedIn" tab="play">
+            <ion-icon name="play"></ion-icon>
+            <ion-label>Play</ion-label>
+        </ion-tab-button>
 
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="play">
-      <ion-icon name="play"></ion-icon>
-      <ion-label>Play</ion-label>
-    </ion-tab-button>
+        <ion-tab-button *ngIf="loggedIn" tab="home">
+            <ion-icon name="home"></ion-icon>
+            <ion-label>Recent</ion-label>
+        </ion-tab-button>
 
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Recent</ion-label>
-    </ion-tab-button>
+        <ion-tab-button *ngIf="loggedIn" tab="friends">
+            <ion-icon name="contacts"></ion-icon>
+            <ion-label>Friends</ion-label>
+        </ion-tab-button>
 
-    <ion-tab-button tab="friends">
-      <ion-icon name="contacts"></ion-icon>
-      <ion-label>Friends</ion-label>
-    </ion-tab-button>
+        <ion-tab-button *ngIf="loggedIn" tab="account">
+            <ion-icon name="person"></ion-icon>
+            <ion-label>Account</ion-label>
+        </ion-tab-button>
 
-    <ion-tab-button tab="account">
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Account</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
+        <ion-tab-button *ngIf="!loggedIn" tab="login">
+            <ion-icon name="log-in"></ion-icon>
+            <ion-label>Login</ion-label>
+        </ion-tab-button>
 
+        <ion-tab-button *ngIf="!loggedIn" tab="register">
+            <ion-icon name="person-add"></ion-icon>
+            <ion-label>Register</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
 </ion-tabs>

@@ -83,6 +83,12 @@ export class APIService {
         ).toPromise());
     };
 
+    public getFriends = async (): Promise<Array<IPerson>> => {
+        return (await this.http.get<any>(
+            this.configStorageService.getSettigns().apiEndpoint + "friends"
+        ).toPromise()).friends as Array<IPerson>;
+    };
+
     public getRate = async () => {
         return (await this.http.get<any>(
             this.configStorageService.getSettigns().apiEndpoint + "rate/getNew"

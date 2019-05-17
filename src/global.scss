@@ -9,3 +9,22 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+.small {
+  font-size: 14px;
+  color: #989DAB;
+}
+
+.error {
+  color: red;
+}
+
+input {
+  border: 2px solid #D1D5DE;
+  border-radius: 3px;
+  box-shadow: none;
+  padding: 4px 10px;
+  height: 40px;
+  font-weight: 400;
+  font-size: 13px;
+}

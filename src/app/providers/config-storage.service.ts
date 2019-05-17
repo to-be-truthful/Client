@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 
 export interface IConfig {
-  apiEndpoint: string
+    apiEndpoint: string
 }
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class ConfigStorageService {
 
-  constructor() { }
-
-  public getSettigns = (): IConfig => {
-    return {
-      apiEndpoint: "http://localhost:8080/api/v1/"
+    constructor() {
     }
-  }
+
+    public getSettigns = (): IConfig => {
+        return {
+            apiEndpoint: "http://localhost:8080/api/v1/"
+        }
+    }
 }
