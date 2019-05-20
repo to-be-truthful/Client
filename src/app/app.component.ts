@@ -24,8 +24,13 @@ export class AppComponent {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            this.statusBar.styleDefault();
-            this.splashScreen.hide();
+            if(this.platform.is("desktop")){
+                console.log("Web environment detected");
+            } else {
+                console.log("Cordova detected");
+                this.statusBar.styleDefault();
+                this.splashScreen.hide();
+            }
         });
     }
 }

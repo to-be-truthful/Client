@@ -21,7 +21,6 @@ export class FriendsPage implements OnInit {
         this.apiService.getFriends().then(friends => {
             this.loading = false;
             this.friends = friends;
-            console.log(friends);
         })
     }
 

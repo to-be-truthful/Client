@@ -1,8 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService, ILoginPayload} from "../../providers/auth.service";
-import {Router} from "@angular/router";
-import {IonApp, NavController} from "@ionic/angular";
+import {NavController} from "@ionic/angular";
 
 @Component({
     selector: 'app-login',
@@ -28,7 +27,6 @@ export class LoginPage implements OnInit {
     }
 
     ngOnInit() {
-        console.log("made form");
         this.loginForm = this.formBuilder.group({
             email: ["", Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
             password: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])]
@@ -36,7 +34,6 @@ export class LoginPage implements OnInit {
     }
 
     onSubmit = async (): Promise<void> => {
-        console.log("hello!")
         this.loginSubmitted = true;
         if (this.loginForm.invalid) {
             return;

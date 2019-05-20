@@ -72,7 +72,6 @@ export class AuthService {
 
     public login = async (loginPayload: ILoginPayload): Promise<void> => {
         const res: any = await this.httpService.post(this.configStorageService.getSettigns().apiEndpoint + "user/login", loginPayload).toPromise();
-        console.log("res: " + JSON.stringify(res));
         this.cachedAuthResponse = res.user as IAuthResponse;
     };
 

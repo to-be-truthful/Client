@@ -33,7 +33,6 @@ export class RegisterPage implements OnInit {
     }
 
     ngOnInit() {
-        console.log("made form");
         this.registerForm = this.formBuilder.group({
             email: ["", Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
             password: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
@@ -48,7 +47,6 @@ export class RegisterPage implements OnInit {
     }
 
     onSubmit = async (): Promise<void> => {
-        console.log("hello!")
         this.registerSubmitted = true;
         if (this.registerForm.invalid) {
             return;

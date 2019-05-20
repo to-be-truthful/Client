@@ -40,7 +40,6 @@ export class HomePage implements OnInit {
         this.loading = true;
         this.apiService.getFeed().then(feed => {
             this.loading = false;
-            console.log(feed);
             this.rates = feed.rates;
 
             feed.notifs.forEach(notif => {
