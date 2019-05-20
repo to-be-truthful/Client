@@ -23,7 +23,7 @@ export class APIInterceptor implements HttpInterceptor {
 
             console.log("intercept err: " + JSON.stringify(err));
 
-            const error = err.error.message || err.statusText;
+            const error = err.error.message.msg || err.error.message || err.statusText;
             return throwError(error);
         }));
     }
