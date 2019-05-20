@@ -2,9 +2,17 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ConfigStorageService} from "./config-storage.service";
 
-export interface ITokenPayload {
+export interface ILoginPayload {
     email: string;
     password: string;
+}
+
+export interface IRegisterPayload {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    username: string;
 }
 
 export interface ITokenContents {
@@ -55,10 +63,14 @@ export class AuthService {
         }
     }
 
-    public login = async (loginPayload: ITokenPayload): Promise<void> => {
+    public login = async (loginPayload: ILoginPayload): Promise<void> => {
         const res: any = await this.httpService.post(this.configStorageService.getSettigns().apiEndpoint + "user/login", loginPayload).toPromise();
         console.log("res: " + JSON.stringify(res));
         this.cachedAuthResponse = res.user as IAuthResponse;
+    };
+
+    public register = async (registerPayload: IRegisterPayload): Promise<void> => {
+        await this.httpService.post(this.configStorageService.getSettigns().apiEndpoint + "user/register", registerPayload).toPromise();
     };
 
     public logout = (): void => {

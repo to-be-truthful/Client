@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService, ILoginPayload, IRegisterPayload} from "../../providers/auth.service";
+import {NavController} from "@ionic/angular";
+import {PasswordValidation} from "../../password.validation";
 
 @Component({
     selector: 'app-register',
@@ -7,10 +11,61 @@ import {Component, OnInit} from '@angular/core';
 })
 export class RegisterPage implements OnInit {
 
-    constructor() {
+    registerForm: FormGroup;
+    registerLoading: boolean = false;
+    registerSubmitted: boolean = false;
+    registerError: string;
+
+    credentials: IRegisterPayload = {
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        username: ''
+    };
+
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthService,
+        private navController: NavController
+    ) {
     }
 
     ngOnInit() {
+        console.log("made form");
+        this.registerForm = this.formBuilder.group({
+            email: ["", Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
+            password: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
+            confirmPassword: ["", Validators.required],
+            firstName: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
+            lastName: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
+            username: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])]
+        }, {
+            validator: PasswordValidation.MatchPassword
+        })
     }
 
+    onSubmit = async (): Promise<void> => {
+        console.log("hello!")
+        this.registerSubmitted = true;
+        if (this.registerForm.invalid) {
+            return;
+        }
+
+        this.registerLoading = true;
+        this.credentials.email = this.registerForm.controls.email.value;
+        this.credentials.password = this.registerForm.controls.password.value;
+        this.credentials.firstName = this.registerForm.controls.firstName.value;
+        this.credentials.lastName = this.registerForm.controls.lastName.value;
+        this.credentials.username = this.registerForm.controls.username.value;
+
+        try {
+            await this.authService.register(this.credentials);
+            this.navController.navigateForward("/app/login");
+        } catch (e) {
+            console.log(e);
+            this.registerError = e;
+        }
+        this.registerLoading = false;
+    }
 }

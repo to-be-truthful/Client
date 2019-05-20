@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService, ITokenPayload} from "../../providers/auth.service";
+import {AuthService, ILoginPayload} from "../../providers/auth.service";
 import {Router} from "@angular/router";
 import {IonApp, NavController} from "@ionic/angular";
 
@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
     loginSubmitted: boolean = false;
     loginError: string;
 
-    credentials: ITokenPayload = {
+    credentials: ILoginPayload = {
         email: '',
         password: ''
     };
@@ -55,5 +55,4 @@ export class LoginPage implements OnInit {
         }
         this.loginLoading = false;
     }
-
 }

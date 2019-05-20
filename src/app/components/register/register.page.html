@@ -5,6 +5,108 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content padding>
+    <div id="register">
+        <div class="register-box">
+            <h1 class="ion-text-center">Let's get started</h1>
+            <p class="small ion-text-center">Please make an account to get started on To Be Truthful</p>
+            <p *ngIf="registerError" class="small ion-text-center error">{{registerError}}</p>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-item margin-bottom>
+                            <ion-label position="stacked">First Name:</ion-label>
+                            <ion-input required formControlName="firstName"></ion-input>
+                        </ion-item>
+                        <div *ngIf="registerSubmitted && registerForm.controls['firstName'].errors" class="invalid-feedback">
+                            <div class="invalid" *ngIf="registerForm.controls['firstName'].errors.required">First name is
+                                required
+                            </div>
+                        </div>
+                    </ion-col>
 
+                    <ion-col col-6>
+                        <ion-item margin-bottom>
+                            <ion-label position="stacked">Last Name:</ion-label>
+                            <ion-input required formControlName="lastName"></ion-input>
+                        </ion-item>
+                        <div *ngIf="registerSubmitted && registerForm.controls['lastName'].errors" class="invalid-feedback">
+                            <div class="invalid" *ngIf="registerForm.controls['lastName'].errors.required">Last name is
+                                required
+                            </div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-item margin-bottom>
+                    <ion-label position="stacked">Username:</ion-label>
+                    <ion-input required formControlName="username"></ion-input>
+                </ion-item>
+                <div *ngIf="registerSubmitted && registerForm.controls['username'].errors" class="invalid-feedback">
+                    <div class="invalid" *ngIf="registerForm.controls['username'].errors.required">Username is
+                        required
+                    </div>
+                </div>
+                <ion-item margin-bottom>
+                    <ion-label position="stacked">Email Address:</ion-label>
+                    <ion-input required formControlName="email" type="email"></ion-input>
+                </ion-item>
+                <div *ngIf="registerSubmitted && registerForm.controls['email'].errors" class="invalid-feedback">
+                    <div class="invalid" *ngIf="registerForm.controls['email'].errors.required">Email is required</div>
+                    <div class="invalid"
+                         *ngIf="!registerForm.controls['email'].errors.required && registerForm.controls['email'].errors.email">
+                        Email must be a valid email.
+                    </div>
+                </div>
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-item margin-bottom>
+                            <ion-label position="stacked">Password:</ion-label>
+                            <ion-input required type="password" formControlName="password"></ion-input>
+                        </ion-item>
+                        <div *ngIf="registerSubmitted && registerForm.controls['password'].errors"
+                             class="invalid-feedback">
+                            <div class="invalid" *ngIf="registerForm.controls['password'].errors.required">Password is
+                                required
+                            </div>
+                            <div class="invalid"
+                                 *ngIf="!(registerForm.controls['password'].errors.required) && registerForm.controls['password'].errors.PassTooWeak">
+                                Please pick a stronger password
+                            </div>
+                        </div>
+                    </ion-col>
+
+                    <ion-col col-6>
+                        <ion-item margin-bottom>
+                            <ion-label position="stacked">Confirm password:</ion-label>
+                            <ion-input required type="password" formControlName="confirmPassword"></ion-input>
+                        </ion-item>
+                        <div *ngIf="registerSubmitted && registerForm.controls['confirmPassword'].errors"
+                             class="invalid-feedback">
+                            <div class="invalid" *ngIf="registerForm.controls['confirmPassword'].errors.required">You
+                                must type your
+                                password twice.
+                            </div>
+                            <div class="invalid"
+                                 *ngIf="!(registerForm.controls['confirmPassword'].errors.required) && registerForm.controls['confirmPassword'].errors.MatchPassword">
+                                Passwords do not match.
+                            </div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-button type="submit" [disabled]="registerLoading || registerForm.invalid" large>
+                            Register
+                        </ion-button>
+                    </ion-col>
+
+                    <ion-col col-6>
+                        <ion-button large routerLink="/app/login">
+                            Back to login
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </form>
+        </div>
+    </div>
 </ion-content>
