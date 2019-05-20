@@ -1,22 +1,26 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {APIService, INotif, IRate} from "../../providers/api.service";
-import {ToastController} from "@ionic/angular";
 import {NotifService} from "../../providers/notif.service";
+import {UpdateCheckService} from "../../providers/update-check.service";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.page.html',
     styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
 
     public rates: Array<IRate>;
     public loading: boolean;
 
+    private refreshListener: Subscription;
+
     constructor(
         private apiService: APIService,
         private notifService: NotifService,
-        private changeDetection: ChangeDetectorRef
+        private changeDetection: ChangeDetectorRef,
+        private updateService: UpdateCheckService
     ) {
     }
 
@@ -24,6 +28,16 @@ export class HomePage implements OnInit {
         this.loading = true;
         await this.loadContent();
         this.loading = false;
+
+        this.refreshListener = this.updateService.updateEmitter.subscribe(() => {
+            this.loadContent();
+        })
+    }
+
+    ngOnDestroy() {
+        if(this.refreshListener){
+            this.refreshListener.unsubscribe();
+        }
     }
 
     public loadContent = async () => {
