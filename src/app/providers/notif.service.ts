@@ -20,7 +20,7 @@ export class NotifService {
           role: 'cancel',
         }
       ],
-      duration: 5000
+      duration: 2500
     });
     toast.present();
   }
