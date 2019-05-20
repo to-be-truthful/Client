@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -12,6 +12,11 @@ import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {APIInterceptor} from "./interceptors/api.interceptor";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
+import {OnLoadService} from "./providers/on-load.service";
+
+export function init_app(onLoadService: OnLoadService) {
+    return () => onLoadService.onLoad();
+}
 
 @NgModule({
     declarations: [AppComponent],
@@ -20,7 +25,10 @@ import {TokenInterceptor} from "./interceptors/token.interceptor";
     providers: [
         StatusBar,
         SplashScreen,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        {
+            provide: RouteReuseStrategy,
+            useClass: IonicRouteStrategy
+        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: APIInterceptor,
@@ -30,7 +38,14 @@ import {TokenInterceptor} from "./interceptors/token.interceptor";
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true
-        }
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: init_app,
+            deps: [OnLoadService],
+            multi: true
+        },
+
     ],
     bootstrap: [AppComponent]
 })
