@@ -9,6 +9,7 @@ import {APIService, IPerson} from "../../providers/api.service";
 export class FriendsPage implements OnInit {
 
     public friends: Array<IPerson>;
+    public loading: boolean;
 
     constructor(
         private apiService: APIService
@@ -16,7 +17,9 @@ export class FriendsPage implements OnInit {
     }
 
     ngOnInit() {
+        this.loading = true;
         this.apiService.getFriends().then(friends => {
+            this.loading = false;
             this.friends = friends;
             console.log(friends);
         })

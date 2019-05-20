@@ -10,6 +10,7 @@ import {ToastController} from "@ionic/angular";
 export class HomePage implements OnInit {
 
     public rates: Array<IRate>;
+    public loading: boolean;
 
     constructor(
         private apiService: APIService,
@@ -18,14 +19,7 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit() {
-        this.apiService.getFeed().then(feed => {
-            console.log(feed);
-            this.rates = feed.rates;
-
-            feed.notifs.forEach(notif => {
-                this.createNotif(notif.text);
-            })
-        })
+        this.loadContent();
     }
 
     public createNotif = async (message: string) => {
@@ -43,7 +37,9 @@ export class HomePage implements OnInit {
     };
 
     public loadContent = () => {
+        this.loading = true;
         this.apiService.getFeed().then(feed => {
+            this.loading = false;
             console.log(feed);
             this.rates = feed.rates;
 

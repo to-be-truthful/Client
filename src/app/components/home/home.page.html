@@ -7,21 +7,27 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item *ngFor="let rate of rates" routerLink="/app/view/{{rate._id}}">
-            <ion-avatar slot="start">
-                <img [ngClass]="{'seen': rate.shown === true}" src="./assets/female.png"
-                     *ngIf="rate.personFrom.gender === 'female'">
-                <img [ngClass]="{'seen': rate.shown === true}" src="./assets/male.png"
-                     *ngIf="rate.personFrom.gender === 'male'">
-                <img [ngClass]="{'seen': rate.shown === true}" src="./assets/male.png"
-                     *ngIf="rate.personFrom.gender === 'other'">
-            </ion-avatar>
-            <ion-label>
-                <h2>mention
-                    from {{rate.personFrom.gender === "male" ? "a boy" : rate.personFrom.gender === "female" ? "a girl" : "a person"}}</h2>
-                <p>{{ getTimeSince(rate.date) }} ago</p>
-            </ion-label>
-        </ion-item>
-    </ion-list>
+    <div *ngIf="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Loading feed...</p>
+    </div>
+    <div *ngIf="!loading">
+        <ion-list>
+            <ion-item *ngFor="let rate of rates" routerLink="/app/view/{{rate._id}}">
+                <ion-avatar slot="start">
+                    <img [ngClass]="{'seen': rate.shown === true}" src="./assets/female.png"
+                         *ngIf="rate.personFrom.gender === 'female'">
+                    <img [ngClass]="{'seen': rate.shown === true}" src="./assets/male.png"
+                         *ngIf="rate.personFrom.gender === 'male'">
+                    <img [ngClass]="{'seen': rate.shown === true}" src="./assets/male.png"
+                         *ngIf="rate.personFrom.gender === 'other'">
+                </ion-avatar>
+                <ion-label>
+                    <h2>mention
+                        from {{rate.personFrom.gender === "male" ? "a boy" : rate.personFrom.gender === "female" ? "a girl" : "a person"}}</h2>
+                    <p>{{ getTimeSince(rate.date) }} ago</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
 </ion-content>
