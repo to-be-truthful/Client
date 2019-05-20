@@ -18,15 +18,15 @@
             </ion-list-header>
             <ion-item *ngFor="let friend of friends">
                 <ion-avatar slot="start">
-                    <img src="./assets/female.png" *ngIf="friend.gender === 'female'">
-                    <img src="./assets/male.png" *ngIf="friend.gender === 'male'">
-                    <img src="./assets/male.png" *ngIf="friend.gender === 'other'">
+                    <img *ngIf="friend.gender === 'female'" src="./assets/female.png">
+                    <img *ngIf="friend.gender === 'male'" src="./assets/male.png">
+                    <img *ngIf="friend.gender === 'other'" src="./assets/male.png">
                 </ion-avatar>
                 <ion-label>
                     <h2>{{friend.firstName }} {{friend.lastName}}</h2>
                     <p>{{friend.username}}</p>
                 </ion-label>
-                <ion-button shape="round" (click)="this.removeFriend(friend)">
+                <ion-button (click)="this.removeFriend(friend)" shape="round">
                     <ion-icon name="close"></ion-icon>
                 </ion-button>
             </ion-item>

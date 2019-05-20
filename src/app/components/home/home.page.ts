@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {APIService, INotif, IRate, ISkimmedRate} from "../../providers/api.service";
+import {APIService, ISkimmedRate} from "../../providers/api.service";
 import {NotifService} from "../../providers/notif.service";
 import {UpdateCheckService} from "../../providers/update-check.service";
 import {Subscription} from "rxjs";
@@ -35,7 +35,7 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if(this.refreshListener){
+        if (this.refreshListener) {
             this.refreshListener.unsubscribe();
         }
     }
@@ -63,25 +63,25 @@ export class HomePage implements OnInit, OnDestroy {
 
         if (seconds < 60) {
             const secondsFormatted = seconds.toFixed(0);
-            if(secondsFormatted === "1"){
+            if (secondsFormatted === "1") {
                 return secondsFormatted + " second";
             }
             return secondsFormatted + " seconds";
         } else if (minutes < 60) {
             const minutesFormatted = minutes.toFixed(0);
-            if(minutesFormatted === "1"){
+            if (minutesFormatted === "1") {
                 return minutesFormatted + " minute";
             }
             return minutesFormatted + " minutes";
         } else if (hours < 24) {
             const hoursFormatted = hours.toFixed(0);
-            if(hoursFormatted === "1"){
+            if (hoursFormatted === "1") {
                 return hoursFormatted + " hour";
             }
             return hoursFormatted + " hours";
         } else {
             const daysFormatted = days.toFixed(0);
-            if(daysFormatted === "1"){
+            if (daysFormatted === "1") {
                 return daysFormatted + " day"
             }
             return daysFormatted + " days"

@@ -29,7 +29,7 @@ export class PlayPage implements OnInit {
     public getNewRate = async () => {
         try {
             this.question = await this.apiService.getNewRate();
-        }catch (e) {
+        } catch (e) {
             this.notifService.prompt("Failed to play; " + e);
             this.navController.navigateBack("/app/home");
         }
@@ -41,7 +41,7 @@ export class PlayPage implements OnInit {
             await this.apiService.rate(this.question._id, person._id);
             this.notifService.prompt("Rate submitted!");
             await this.getNewRate();
-        }catch (e) {
+        } catch (e) {
             this.notifService.prompt("Failed to rate; " + e);
             await this.getNewRate();
         }

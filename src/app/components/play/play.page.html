@@ -15,17 +15,17 @@
         <h1 id="question" text-center>{{this.question.question.questionText}}</h1>
         <div id="cards">
             <ion-row class="cards-box">
-                <ion-col size="12" margin-bottom>
+                <ion-col margin-bottom size="12">
                     <ion-row class="cards-row">
-                        <ion-col size="6" class="cards-col">
+                        <ion-col class="cards-col" size="6">
                             <ion-card (click)="submitRate(this.question.choices[0])">
                                 <ion-card-header>
                                     <ion-card-subtitle>{{ this.question.choices[0].username }}</ion-card-subtitle>
-                                    <ion-card-title>{{ this.question.choices[0].firstName }} {{ this.question.choices[0].lastName }}</ion-card-title >
+                                    <ion-card-title>{{ this.question.choices[0].firstName }} {{ this.question.choices[0].lastName }}</ion-card-title>
                                 </ion-card-header>
                             </ion-card>
                         </ion-col>
-                        <ion-col size="6" class="cards-col">
+                        <ion-col class="cards-col" size="6">
                             <ion-card (click)="submitRate(this.question.choices[1])">
                                 <ion-card-header>
                                     <ion-card-subtitle>{{ this.question.choices[1].username }}</ion-card-subtitle>
@@ -35,7 +35,7 @@
                         </ion-col>
                     </ion-row>
                 </ion-col>
-                <ion-col size="12" margin-bottom>
+                <ion-col margin-bottom size="12">
                     <ion-row>
                         <ion-col size="6">
                             <ion-card (click)="submitRate(this.question.choices[2])">

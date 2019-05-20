@@ -24,7 +24,7 @@ export class AppComponent {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            if(this.platform.is("desktop")){
+            if (this.platform.is("desktop")) {
                 console.log("Web environment detected");
             } else {
                 console.log("Cordova detected");

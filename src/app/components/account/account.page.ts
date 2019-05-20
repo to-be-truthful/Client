@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {APIService, IAccountResponse, IPerson} from "../../providers/api.service";
+import {APIService, IAccountResponse} from "../../providers/api.service";
 
 @Component({
     selector: 'app-account',

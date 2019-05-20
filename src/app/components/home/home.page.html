@@ -15,12 +15,12 @@
         <ion-list>
             <ion-item *ngFor="let rate of rates" routerLink="/app/view/{{rate._id}}">
                 <ion-avatar slot="start">
-                    <img [ngClass]="{'seen': rate.shown === true}" src="./assets/female.png"
-                         *ngIf="rate.personFrom.gender === 'female'">
-                    <img [ngClass]="{'seen': rate.shown === true}" src="./assets/male.png"
-                         *ngIf="rate.personFrom.gender === 'male'">
-                    <img [ngClass]="{'seen': rate.shown === true}" src="./assets/male.png"
-                         *ngIf="rate.personFrom.gender === 'other'">
+                    <img *ngIf="rate.personFrom.gender === 'female'" [ngClass]="{'seen': rate.shown === true}"
+                         src="./assets/female.png">
+                    <img *ngIf="rate.personFrom.gender === 'male'" [ngClass]="{'seen': rate.shown === true}"
+                         src="./assets/male.png">
+                    <img *ngIf="rate.personFrom.gender === 'other'" [ngClass]="{'seen': rate.shown === true}"
+                         src="./assets/male.png">
                 </ion-avatar>
                 <ion-label>
                     <h2>mention

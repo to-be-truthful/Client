@@ -5,13 +5,12 @@ import {AuthService} from "./auth.service";
 import * as io from 'socket.io-client';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UpdateCheckService {
 
-    private ioSocket;
-
     public updateEmitter: EventEmitter<void>;
+    private ioSocket;
 
     constructor(
         private configStorageService: ConfigStorageService,
