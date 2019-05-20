@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {APIService, INotif, IRate} from "../../providers/api.service";
 import {ToastController} from "@ionic/angular";
+import {NotifService} from "../../providers/notif.service";
 
 @Component({
     selector: 'app-home',
@@ -14,38 +15,25 @@ export class HomePage implements OnInit {
 
     constructor(
         private apiService: APIService,
-        private toastController: ToastController
+        private notifService: NotifService,
+        private changeDetection: ChangeDetectorRef
     ) {
     }
 
-    ngOnInit() {
-        this.loadContent();
+    async ngOnInit() {
+        this.loading = true;
+        await this.loadContent();
+        this.loading = false;
     }
 
-    public createNotif = async (message: string) => {
-        const toast = await this.toastController.create({
-            header: "Notification",
-            message: message,
-            buttons: [
-                {
-                    text: 'Close',
-                    role: 'cancel',
-                }
-            ]
-        } );
-        toast.present();
-    };
+    public loadContent = async () => {
+        const feed = await this.apiService.getFeed();
+        this.rates = feed.rates;
 
-    public loadContent = () => {
-        this.loading = true;
-        this.apiService.getFeed().then(feed => {
-            this.loading = false;
-            this.rates = feed.rates;
-
-            feed.notifs.forEach(notif => {
-                this.createNotif(notif.text);
-            });
-        })
+        feed.notifs.forEach(notif => {
+            this.notifService.prompt(notif.text);
+        });
+        this.changeDetection.detectChanges();
     };
 
     public getTimeSince = (dateString: string): string => {

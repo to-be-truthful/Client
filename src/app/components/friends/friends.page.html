@@ -26,14 +26,14 @@
                     <h2>{{friend.firstName }} {{friend.lastName}}</h2>
                     <p>{{friend.username}}</p>
                 </ion-label>
-                <ion-button shape="round">
+                <ion-button shape="round" (click)="this.removeFriend(friend)">
                     <ion-icon name="close"></ion-icon>
                 </ion-button>
             </ion-item>
         </ion-list>
 
         <ion-fab horizontal="end" slot="fixed" vertical="bottom">
-            <ion-fab-button>
+            <ion-fab-button (click)="addFriend()">
                 <ion-icon name="add"></ion-icon>
             </ion-fab-button>
         </ion-fab>

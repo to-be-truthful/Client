@@ -76,11 +76,11 @@ export class APIService {
         ).toPromise());
     };
 
-    public addFriend = async (userId: string) => {
+    public addFriend = async (username: string) => {
         (await this.http.post<any>(
             this.configStorageService.getSettigns().apiEndpoint + "friends/add",
             {
-                userId
+                username
             }
         ).toPromise());
     };
