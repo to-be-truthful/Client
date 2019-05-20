@@ -1,19 +1,21 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ConfigStorageService} from "./config-storage.service";
+import {Gender} from "./auth.service";
 
 export interface IPerson {
     email?: string;
-    firstName: string;
-    lastName: string;
-    username: string;
-    _id: string;
+    firstName?: string;
+    lastName?: string;
+    username?: string;
+    _id?: string;
     passwordHash?: string;
+    gender: Gender
 }
 
 export interface IFeedResponse {
     rates: Array<IRate>;
-    notif: Array<INotif>;
+    notifs: Array<INotif>;
 }
 
 export interface INotif {
@@ -29,7 +31,7 @@ export interface IQuestion {
 }
 
 export interface IRate {
-    personFrom?: IPerson;
+    personFrom: IPerson;
     choices: Array<IPerson>;
     question: IQuestion;
     date: string;
@@ -107,6 +109,6 @@ export class APIService {
     public getFeed = async () => {
         return (await this.http.get<any>(
             this.configStorageService.getSettigns().apiEndpoint + "user/feed"
-        ).toPromise()).question as IFeedResponse;
+        ).toPromise()) as IFeedResponse;
     }
 }

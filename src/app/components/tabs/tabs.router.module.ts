@@ -71,6 +71,15 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'view/:id',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../view/view.module#ViewPageModule'
+                    }
+                ]
+            },
+            {
                 path: '',
                 redirectTo: '/app/home',
                 pathMatch: 'full'
