@@ -13,6 +13,15 @@ export interface IPerson {
     gender: Gender
 }
 
+export interface IAccountResponse {
+    email: string;
+    firstName: string;
+    lastName: string;
+    username: string;
+    id: string;
+    gender: Gender
+}
+
 export interface IFeedResponse {
     rates: Array<IRate>;
     notifs: Array<INotif>;
@@ -50,11 +59,11 @@ export class APIService {
     ) {
     }
 
-    public getDetails = async (): Promise<IPerson> => {
+    public getDetails = async (): Promise<IAccountResponse> => {
         return (
             (await this.http.get<any>(
                 this.configStorageService.getSettigns().apiEndpoint + "profile/details"
-            ).toPromise()).user as IPerson
+            ).toPromise()).user as IAccountResponse
         )
     };
 

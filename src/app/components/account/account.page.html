@@ -4,7 +4,43 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-button large routerLink="/app/logout">
-        Logout
-    </ion-button>
+    <div *ngIf="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Loading profile...</p>
+    </div>
+    <div *ngIf="!loading">
+        <ion-list>
+            <ion-item>
+                <ion-label>
+                    Email
+                </ion-label>
+                <p>{{user.email}}</p>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    TBT ID
+                </ion-label>
+                <p>{{user.id}}</p>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    Username
+                </ion-label>
+                <p>{{user.username}}</p>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    Gender
+                </ion-label>
+                <p>{{user.gender}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-row center>
+            <ion-col col-6 text-center>
+                <ion-button large routerLink="/app/logout">
+                    Logout
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </div>
 </ion-content>

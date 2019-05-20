@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {APIService, IAccountResponse, IPerson} from "../../providers/api.service";
 
 @Component({
     selector: 'app-account',
@@ -7,10 +8,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AccountPage implements OnInit {
 
-    constructor() {
+    public user: IAccountResponse;
+    loading: boolean;
+
+    constructor(
+        private apiService: APIService
+    ) {
     }
 
     ngOnInit() {
+        this.loading = true;
+        this.apiService.getDetails().then(person => {
+            this.user = person;
+            this.loading = false;
+        })
     }
 
 }
