@@ -11,7 +11,7 @@
         <div class="spinner"></div>
         <p>Loading feed...</p>
     </div>
-    <div *ngIf="!loading">
+    <div *ngIf="!loading" id="content">
         <ion-list>
             <ion-item *ngFor="let rate of rates" routerLink="/app/view/{{rate._id}}">
                 <ion-avatar slot="start">

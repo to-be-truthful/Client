@@ -29,6 +29,7 @@
     "rxjs": "~6.5.1",
     "socket.io-client": "^2.2.0",
     "tslib": "^1.9.0",
+    "typeface-lobster": "0.0.72",
     "zone.js": "~0.8.29",
     "zxcvbn": "^4.4.2"
   },
