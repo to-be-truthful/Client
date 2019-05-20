@@ -62,13 +62,29 @@ export class HomePage implements OnInit, OnDestroy {
         const days = (duration / (1000 * 60 * 60 * 24));
 
         if (seconds < 60) {
-            return seconds.toFixed(0) + " seconds";
+            const secondsFormatted = seconds.toFixed(0);
+            if(secondsFormatted === "1"){
+                return secondsFormatted + " second";
+            }
+            return secondsFormatted + " seconds";
         } else if (minutes < 60) {
-            return minutes.toFixed(0) + " minutes";
+            const minutesFormatted = minutes.toFixed(0);
+            if(minutesFormatted === "1"){
+                return minutesFormatted + " minute";
+            }
+            return minutesFormatted + " minutes";
         } else if (hours < 24) {
-            return hours.toFixed(0) + " hours";
+            const hoursFormatted = hours.toFixed(0);
+            if(hoursFormatted === "1"){
+                return hoursFormatted + " hour";
+            }
+            return hoursFormatted + " hours";
         } else {
-            return days.toFixed(0) + " days"
+            const daysFormatted = days.toFixed(0);
+            if(daysFormatted === "1"){
+                return daysFormatted + " day"
+            }
+            return daysFormatted + " days"
         }
     };
 }
