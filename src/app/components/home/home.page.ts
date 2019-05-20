@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {APIService, INotif, IRate} from "../../providers/api.service";
+import {APIService, INotif, IRate, ISkimmedRate} from "../../providers/api.service";
 import {NotifService} from "../../providers/notif.service";
 import {UpdateCheckService} from "../../providers/update-check.service";
 import {Subscription} from "rxjs";
@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class HomePage implements OnInit, OnDestroy {
 
-    public rates: Array<IRate>;
+    public rates: Array<ISkimmedRate>;
     public loading: boolean;
 
     private refreshListener: Subscription;

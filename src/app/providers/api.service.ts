@@ -23,7 +23,7 @@ export interface IAccountResponse {
 }
 
 export interface IFeedResponse {
-    rates: Array<IRate>;
+    rates: Array<ISkimmedRate>;
     notifs: Array<INotif>;
 }
 
@@ -43,6 +43,16 @@ export interface IRate {
     personFrom: IPerson;
     choices: Array<IPerson>;
     question: IQuestion;
+    date: string;
+    shown: boolean;
+    _id: string;
+    decidedChoice?: string;
+}
+
+export interface ISkimmedRate {
+    personFrom: IPerson;
+    choices: Array<string>;
+    question: string;
     date: string;
     shown: boolean;
     _id: string;
@@ -100,10 +110,19 @@ export class APIService {
         ).toPromise()).friends as Array<IPerson>;
     };
 
-    public getRate = async () => {
+    public getNewRate = async () => {
         return (await this.http.get<any>(
             this.configStorageService.getSettigns().apiEndpoint + "rate/getNew"
         ).toPromise()).question as IRate;
+    };
+
+    public getPastRate = async (rateId: string) => {
+        return (await this.http.post<any>(
+            this.configStorageService.getSettigns().apiEndpoint + "rate/getPast",
+            {
+                rateId
+            }
+        ).toPromise()).rate as IRate;
     };
 
     public rate = async (rateId: string, choiceId: string) => {

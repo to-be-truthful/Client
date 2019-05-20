@@ -28,7 +28,7 @@ export class PlayPage implements OnInit {
 
     public getNewRate = async () => {
         try {
-            this.question = await this.apiService.getRate();
+            this.question = await this.apiService.getNewRate();
         }catch (e) {
             this.notifService.prompt("Failed to play; " + e);
             this.navController.navigateBack("/app/home");
