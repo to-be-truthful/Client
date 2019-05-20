@@ -2,6 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ConfigStorageService} from "./config-storage.service";
 
+export enum Gender {
+    MALE = "male",
+    FEMALE = "female",
+    OTHER = "other"
+}
+
 export interface ILoginPayload {
     email: string;
     password: string;
@@ -13,6 +19,7 @@ export interface IRegisterPayload {
     firstName: string;
     lastName: string;
     username: string;
+    gender: Gender;
 }
 
 export interface ITokenContents {

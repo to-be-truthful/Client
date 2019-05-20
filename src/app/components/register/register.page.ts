@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService, ILoginPayload, IRegisterPayload} from "../../providers/auth.service";
+import {AuthService, Gender, IRegisterPayload} from "../../providers/auth.service";
 import {NavController} from "@ionic/angular";
 import {PasswordValidation} from "../../password.validation";
 
@@ -21,7 +21,8 @@ export class RegisterPage implements OnInit {
         password: '',
         firstName: '',
         lastName: '',
-        username: ''
+        username: '',
+        gender: Gender.OTHER
     };
 
     constructor(
@@ -37,9 +38,10 @@ export class RegisterPage implements OnInit {
             email: ["", Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
             password: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
             confirmPassword: ["", Validators.required],
-            firstName: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
-            lastName: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
-            username: ["", Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])]
+            firstName: ["", Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
+            lastName: ["", Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
+            username: ["", Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
+            gender: [Gender.MALE, Validators.required]
         }, {
             validator: PasswordValidation.MatchPassword
         })
@@ -58,6 +60,7 @@ export class RegisterPage implements OnInit {
         this.credentials.firstName = this.registerForm.controls.firstName.value;
         this.credentials.lastName = this.registerForm.controls.lastName.value;
         this.credentials.username = this.registerForm.controls.username.value;
+        this.credentials.gender = this.registerForm.controls.gender.value;
 
         try {
             await this.authService.register(this.credentials);

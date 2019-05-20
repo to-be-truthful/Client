@@ -57,9 +57,22 @@
                         Email must be a valid email.
                     </div>
                 </div>
-                <ion-row>
+                <ion-item margin-bottom>
+                    <ion-label position="stacked">Gender</ion-label>
+                    <ion-select formControlName="gender">
+                        <ion-select-option value="male">Male</ion-select-option>
+                        <ion-select-option value="female">Female</ion-select-option>
+                        <ion-select-option value="other">Other</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <div *ngIf="registerSubmitted && registerForm.controls['gender'].errors" class="invalid-feedback">
+                    <div class="invalid" *ngIf="registerForm.controls['gender'].errors.required">Gender is
+                        required
+                    </div>
+                </div>
+                <ion-row margin-bottom="">
                     <ion-col col-6>
-                        <ion-item margin-bottom>
+                        <ion-item>
                             <ion-label position="stacked">Password:</ion-label>
                             <ion-input required type="password" formControlName="password"></ion-input>
                         </ion-item>
@@ -74,9 +87,8 @@
                             </div>
                         </div>
                     </ion-col>
-
                     <ion-col col-6>
-                        <ion-item margin-bottom>
+                        <ion-item>
                             <ion-label position="stacked">Confirm password:</ion-label>
                             <ion-input required type="password" formControlName="confirmPassword"></ion-input>
                         </ion-item>
