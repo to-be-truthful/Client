@@ -23,8 +23,7 @@ export class ViewPage implements OnInit {
         this.route.paramMap.subscribe(paramsMap => {
             this.apiService.getPastRate(paramsMap["params"]["id"]).then(rate => {
                 this.question = rate;
-                this.loading = false;
-                console.log(rate);
+                this.loading = false
             })
         });
     }

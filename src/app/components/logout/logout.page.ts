@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Compiler, Component, OnInit} from '@angular/core';
 import {AuthService} from "../../providers/auth.service";
 import {Router} from "@angular/router";
 
@@ -11,7 +11,7 @@ export class LogoutPage implements OnInit {
 
     constructor(
         private routerService: Router,
-        private authService: AuthService
+        private authService: AuthService,
     ) {
     }
 
