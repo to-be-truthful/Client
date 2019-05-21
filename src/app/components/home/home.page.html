@@ -13,7 +13,7 @@
     </div>
     <div *ngIf="!loading" id="content">
         <ion-list>
-            <ion-item *ngFor="let rate of rates" routerLink="/app/view/{{rate._id}}">
+            <ion-item *ngFor="let rate of rates" (click)="openRate(rate)">
                 <ion-avatar slot="start">
                     <img *ngIf="rate.personFrom.gender === 'female'" [ngClass]="{'seen': rate.shown === true}"
                          src="./assets/female.png">

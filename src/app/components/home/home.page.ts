@@ -1,8 +1,10 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {APIService, ISkimmedRate} from "../../providers/api.service";
+import {APIService, IRate, ISkimmedRate} from "../../providers/api.service";
 import {NotifService} from "../../providers/notif.service";
 import {UpdateCheckService} from "../../providers/update-check.service";
 import {Subscription} from "rxjs";
+import {NavController} from "@ionic/angular";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-home',
@@ -20,8 +22,10 @@ export class HomePage implements OnInit, OnDestroy {
         private apiService: APIService,
         private notifService: NotifService,
         private changeDetection: ChangeDetectorRef,
-        private updateService: UpdateCheckService
+        private updateService: UpdateCheckService,
+        private router: Router
     ) {
+        this.loading = true;
     }
 
     async ngOnInit() {
@@ -48,6 +52,13 @@ export class HomePage implements OnInit, OnDestroy {
             this.notifService.prompt(notif.text);
         });
         this.changeDetection.detectChanges();
+    };
+
+    public openRate = (openRate: ISkimmedRate) => {
+        openRate.shown = true;
+        const index = this.rates.findIndex(rate => rate._id.toString() === openRate._id.toString());
+        this.rates[index] = openRate;
+        this.router.navigateByUrl("/app/view/" + openRate._id);
     };
 
     public getTimeSince = (dateString: string): string => {

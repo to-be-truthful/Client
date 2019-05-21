@@ -6,6 +6,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {PlayPage} from './play.page';
+import {AngularFittextModule} from "angular-fittext";
 
 const routes: Routes = [
     {
@@ -19,7 +20,8 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        AngularFittextModule
     ],
     declarations: [PlayPage]
 })

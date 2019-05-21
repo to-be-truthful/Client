@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService, IPerson, IRate} from "../../providers/api.service";
 import {NotifService} from "../../providers/notif.service";
-import {NavController} from "@ionic/angular";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-play',
@@ -16,7 +16,7 @@ export class PlayPage implements OnInit {
     constructor(
         private apiService: APIService,
         private notifService: NotifService,
-        private navController: NavController
+        private router: Router
     ) {
     }
 
@@ -31,7 +31,7 @@ export class PlayPage implements OnInit {
             this.question = await this.apiService.getNewRate();
         } catch (e) {
             this.notifService.prompt("Failed to play; " + e);
-            this.navController.navigateBack("/app/home");
+            this.router.navigateByUrl("/app/home");
         }
     };
 

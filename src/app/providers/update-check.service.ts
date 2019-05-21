@@ -19,10 +19,14 @@ export class UpdateCheckService {
         this.updateEmitter = new EventEmitter();
     }
 
-    public loadSocket = (): void => {
+    public disconnect = (): void => {
         if (this.ioSocket) {
             this.ioSocket.disconnect();
         }
+    };
+
+    public loadSocket = (): void => {
+        this.disconnect();
 
         this.ioSocket = io(this.configStorageService.getSettigns().socketEndpoint + 'liveupdate', {
             path: '/s/'

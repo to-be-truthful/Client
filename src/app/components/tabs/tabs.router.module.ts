@@ -59,7 +59,7 @@ const routes: Routes = [
                         path: '',
                         loadChildren: '../logout/logout.module#LogoutPageModule'
                     }
-                ]
+                ],
             },
             {
                 path: 'register',

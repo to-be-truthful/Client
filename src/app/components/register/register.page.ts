@@ -3,13 +3,14 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService, Gender, IRegisterPayload} from "../../providers/auth.service";
 import {NavController} from "@ionic/angular";
 import {PasswordValidation} from "../../password.validation";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-register',
     templateUrl: './register.page.html',
     styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage implements OnInit{
 
     registerForm: FormGroup;
     registerLoading: boolean = false;
@@ -28,7 +29,7 @@ export class RegisterPage implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
-        private navController: NavController
+        private router: Router
     ) {
     }
 
@@ -62,7 +63,7 @@ export class RegisterPage implements OnInit {
 
         try {
             await this.authService.register(this.credentials);
-            this.navController.navigateForward("/app/login");
+            this.router.navigateByUrl("/app/login");
         } catch (e) {
             console.log(e);
             this.registerError = e;

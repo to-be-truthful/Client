@@ -8,7 +8,7 @@ import {NotifService} from "../../providers/notif.service";
     templateUrl: './friends.page.html',
     styleUrls: ['./friends.page.scss'],
 })
-export class FriendsPage implements OnInit {
+export class FriendsPage {
 
     public friends: Array<IPerson>;
     public loading: boolean;
@@ -19,9 +19,10 @@ export class FriendsPage implements OnInit {
         private notifService: NotifService,
         private changeDetection: ChangeDetectorRef
     ) {
+        this.loading = true;
     }
 
-    async ngOnInit() {
+    async ionViewDidEnter() {
         this.loading = true;
         await this.getFriends();
         this.loading = false;

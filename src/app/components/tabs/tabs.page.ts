@@ -26,6 +26,7 @@ export class TabsPage implements OnInit {
         if (!this.loggedIn && (currentTab !== "login" && currentTab !== "register")) {
             this.router.navigateByUrl("/app/login");
         } else if (this.loggedIn && (currentTab === "login" || currentTab === "register")) {
+            console.log("caught auth attmp")
             this.router.navigateByUrl("/app/home");
         }
     };

@@ -6,7 +6,7 @@ import {APIService, IAccountResponse} from "../../providers/api.service";
     templateUrl: './account.page.html',
     styleUrls: ['./account.page.scss'],
 })
-export class AccountPage implements OnInit {
+export class AccountPage {
 
     public user: IAccountResponse;
     loading: boolean;
@@ -14,9 +14,10 @@ export class AccountPage implements OnInit {
     constructor(
         private apiService: APIService
     ) {
+        this.loading = true;
     }
 
-    ngOnInit() {
+    ionViewDidEnter() {
         this.loading = true;
         this.apiService.getDetails().then(person => {
             this.user = person;
