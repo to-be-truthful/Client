@@ -18,10 +18,6 @@ export class AppComponent {
         this.initializeApp();
     }
 
-    public showAdd = (): void => {
-
-    };
-
     initializeApp() {
         this.platform.ready().then(() => {
             if (this.platform.is("desktop")) {
