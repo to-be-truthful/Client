@@ -13,6 +13,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {APIInterceptor} from "./interceptors/api.interceptor";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
 import {OnLoadService} from "./providers/on-load.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 export function init_app(onLoadService: OnLoadService) {
     return () => onLoadService.onLoad();
@@ -21,7 +22,7 @@ export function init_app(onLoadService: OnLoadService) {
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, BrowserModule, BrowserAnimationsModule],
     providers: [
         StatusBar,
         SplashScreen,

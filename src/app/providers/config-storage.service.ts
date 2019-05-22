@@ -17,8 +17,8 @@ export class ConfigStorageService {
 
     public getSettigns = (): IConfig => {
         return {
-            apiEndpoint: "http://172.20.10.6:8080/api/v1/",
-            socketEndpoint: "http://172.20.10.6:8080/"
+            apiEndpoint: "http://localhost:8080/api/v1/",
+            socketEndpoint: "http://localhost:8080/"
         }
     }
 }
