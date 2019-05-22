@@ -1,9 +1,18 @@
 #question-card {
   ion-card-title {
-    font-size: 3ch;
     white-space: nowrap;
     font-family: 'Lobster', cursive;
   }
+
+  .long {
+    font-size: 4vw;
+
+  }
+
+  .short {
+    font-size: 5vw;
+  }
+
 }
 
 .cards-row {
@@ -13,6 +22,7 @@
     height: 30vh;
 
     ion-card {
+      font-size: 6ch;
       height: 100%;
     }
 
