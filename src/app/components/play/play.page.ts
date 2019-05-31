@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
     templateUrl: './play.page.html',
     styleUrls: ['./play.page.scss'],
 })
-export class PlayPage implements OnInit {
+export class PlayPage implements OnInit{
 
     public loading: boolean;
     public question: IRate;
@@ -20,7 +20,13 @@ export class PlayPage implements OnInit {
     ) {
     }
 
-    async ngOnInit() {
+    async ngOnInit(): Promise<void> {
+        this.loading = true;
+        await this.getNewRate();
+        this.loading = false;
+    }
+
+    async ionViewDidEnter() {
         this.loading = true;
         await this.getNewRate();
         this.loading = false;
