@@ -21,20 +21,19 @@ export class PlayPage implements OnInit{
     }
 
     async ngOnInit(): Promise<void> {
-        this.loading = true;
         await this.getNewRate();
-        this.loading = false;
     }
 
     async ionViewDidEnter() {
-        this.loading = true;
         await this.getNewRate();
-        this.loading = false;
     }
 
     public getNewRate = async () => {
+        this.loading = true;
+
         try {
             this.question = await this.apiService.getNewRate();
+            this.loading = false;
         } catch (e) {
             this.notifService.prompt("Failed to play; " + e);
             this.router.navigateByUrl("/app/home");
