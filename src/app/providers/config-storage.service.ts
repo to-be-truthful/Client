@@ -17,8 +17,8 @@ export class ConfigStorageService {
 
     public getSettigns = (): IConfig => {
         return {
-            apiEndpoint: "http://localhost:8080/api/v1/",
-            socketEndpoint: "http://localhost:8080/"
+            apiEndpoint: "https://api.tbt.notalec.com/api/v1/",
+            socketEndpoint: "https://api.tbt.notalec.com/"
         }
     }
 }
